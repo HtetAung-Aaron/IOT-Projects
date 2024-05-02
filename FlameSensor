@@ -1,0 +1,26 @@
+
+int LED = 13;
+int isFlamePin = 7;
+int isFlame = HIGH;
+
+
+void setup() {
+  pinMode(LED,OUTPUT);
+  pinMode(isFlamePin,HIGH);
+  Serial.begin(9600);
+}
+
+void loop() {
+  isFlame = digitalRead(isFlamePin);
+  if (isFlame ==LOW){ 
+
+    Serial.println("FLAME FLAME FLAME");
+    digitalWrite(LED, HIGH);
+  } esle{
+
+    Serial.println("NO Flame");
+    digitalWrite(LED,LOW);
+
+  }
+
+}
