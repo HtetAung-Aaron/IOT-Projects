@@ -1,0 +1,21 @@
+#include <Servo.h>
+int POServo = 0;
+Servo servo_5;
+
+
+void setup() {
+  // put your setup code here, to run once:
+  servo_5.attach(5);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  for(POServo =0; POServo <= 100; POServo++){
+    servo_5.write(POServo);
+    delay(20);
+  }
+  for (POServo = 100; POServo >= 0; POServo--){
+    servo_5.write(POServo);
+    delay(20);
+  }
+}
