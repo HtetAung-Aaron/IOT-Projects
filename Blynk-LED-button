@@ -1,0 +1,32 @@
+#define BLYNK_TEMPLATE_ID "TMPL6jGGn7kWX"
+#define BLYNK_TEMPLATE_NAME "testing"
+#define BLYNK_PRINT Serial
+#include<Blynk.h>
+#include<ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+char auth[]="TwXzYc5sGmJp9JH_7VcHl70vM3nOSLb3";
+char ssid[] = "GUSTO_209";
+char pass[] = "Gusto@123";
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  Blynk.begin(auth,ssid,pass,"blynk.cloud",80);
+  pinMode(D2,OUTPUT);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  Blynk.run();
+
+}
+BLYNK_WRITE(V1){
+  Serial.print(param.asInt());
+  if(param.asInt()==1)
+  {
+    digitalWrite(D2,HIGH);
+  }
+  else{
+    digitalWrite(D2,LOW);
+  }
+}
