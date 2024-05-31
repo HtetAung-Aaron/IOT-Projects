@@ -1,0 +1,33 @@
+#define BLYNK_TEMPLATE_NAME "Fire Sensor"
+#define BLYNK_TEMPLATE_ID "TMPL63i3KJMs7"
+
+#define BLYNK_PRINT Serial
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+
+// #define BLYNK_AUTH_TOKEN "rGDxbaaeTLtjyqkTQGQnH2CabekDydax"
+
+char auth[] = "rGDxbaaeTLtjyqkTQGQnH2CabekDydax";  // Your Blynk Auth Token
+char ssid[] = "GUSTO_209";  // Your WiFi SSID
+char pass[] = "Gusto@123";  // Your WiFi Password
+
+const int flameSensorPin = D0;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(flameSensorPin, INPUT);
+  Blynk.begin(auth, ssid, pass,"blynk.cloud",80);
+}
+
+void loop()
+{
+  Blynk.run();
+  int sensorValue = digitalRead(flameSensorPin);
+  
+  if (sensorValue == HIGH) {  // LOW indicates flame detected
+    Blynk.logEvent("fire_detect");
+  }
+
+  delay(1000);  // Check sensor every second
+}
